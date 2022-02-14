@@ -35,5 +35,5 @@ export const CarList = styled(FlatList as new (props: FlatListProps<CarData>) =>
     contentContainerStyle: {
         padding: 24
     },
-    showVerticalScrollIndicator: false
+    showsVerticalScrollIndicator: false
 })``
