@@ -14,7 +14,7 @@ import {
   CarImage,
 } from './styles';
 
-interface CarData {
+export interface CarData {
      brand: string;
     name: string;
     rent: {
