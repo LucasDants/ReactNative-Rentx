@@ -1,17 +1,49 @@
 import React from 'react';
-import { View } from 'react-native'
+import { StatusBar } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize';
+
+import Logo from '../../assets/logo.svg'
+import { Car } from '../../components/Car';
 
 import {
-  Container,
- // Title
+    Container,
+    Header,
+    TotalCars,
+    HeaderContent
 } from './styles';
 
 export function Home(){
+  const carData = [{
+    brand: 'audi',
+    name: 'RS 5 Coupé',
+    rent: {
+      period: 'ao dia',
+      price: 120,
+    },
+    thumbnail: 'https://toppng.com/uploads/preview/audi-11530986691mytcdhkpad.png'
+  },
+  {
+    brand: 'audi',
+    name: 'RS 5 Coupé',
+    rent: {
+      period: 'ao dia',
+      price: 120,
+    },
+    thumbnail: 'https://toppng.com/uploads/preview/audi-11530986691mytcdhkpad.png'
+  }
+]
+
   return (
     <Container>
-        {/* <Title>
-
-        </Title> */}
+        <StatusBar barStyle='light-content' backgroundColor="transparent" translucent />
+        <Header>
+            <HeaderContent>
+                <Logo width={RFValue(108)} height={RFValue(12)} />
+                <TotalCars>Total de 12 carros</TotalCars>
+            </HeaderContent>
+        </Header>
+        <Car data={carData[0]} />
+        <Car data={carData[1]} />
     </Container>
   );
 }
