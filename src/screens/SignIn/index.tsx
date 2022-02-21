@@ -15,10 +15,13 @@ import {
   Footer
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../hooks/auth';
 
 export function SignIn(){
     const theme = useTheme()
     const navigation = useNavigation()
+
+    const { signIn } = useAuth()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -31,6 +34,8 @@ export function SignIn(){
 
     try {
       await schema.validate({ email, password })
+
+      await signIn({email, password})
     } catch(err) {
         if(err instanceof Yup.ValidationError) {
           return Alert.alert("Opa", err.message)
