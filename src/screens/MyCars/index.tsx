@@ -59,7 +59,6 @@ export function MyCars(){
     <Container>
       <Header>
         <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
-        <BackButton onPress={() => navigation.goBack()} color={theme.colors.shape} />
         <Title>
           Escolha uma {"\n"}
           data de início e {"\n"}
