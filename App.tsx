@@ -10,12 +10,17 @@ import {
   Archivo_500Medium,
   Archivo_600SemiBold
 } from '@expo-google-fonts/archivo'
+import { LogBox } from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
 import theme from './src/styles/theme';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Routes } from './src/routes';
 import { AppProvider } from './src/hooks';
+
+LogBox.ignoreLogs([
+    'Non-serializable values were found in the navigation state'
+]);
 
 export default function App() {
   const [fontsLoaded] = useFonts({

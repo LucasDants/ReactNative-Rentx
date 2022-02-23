@@ -28,11 +28,13 @@ import { useAuth } from '../../hooks/auth';
 import { Button } from '../../components/Button';
 
 import * as Yup from 'yup'
+import { useNetInfo } from '@react-native-community/netinfo';
 
 export function Profile(){
     const theme = useTheme()
     const navigation = useNavigation()
     const { user, signOut, updateUser } = useAuth()
+    const netInfo = useNetInfo()
 
     const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit')
     const [avatar, setAvatar] = useState(user.avatar)
@@ -40,6 +42,9 @@ export function Profile(){
     const [driverLicense, setDriverLicense] = useState(user.driver_license)
 
     function handleOptionChange(optionSelected: 'dataEdit' | 'passwordEdit') {
+        if(netInfo.isConnected === false  && optionSelected === 'passwordEdit') {
+            return Alert.alert("Você está offline","Para mudar a senha, conecte-se a internet")
+        }
         setOption(optionSelected)
     }
 

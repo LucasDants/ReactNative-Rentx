@@ -19,8 +19,7 @@ import { StatusBar } from "react-native";
 import { Button } from "../../components/Button";
 import { Calendar, DayProps, generateInterval, MarkedDateProps } from "../../components/Calendar";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { format } from "date-fns";
-import { getPlatformDate } from "../../utils/getPlatformDate";
+import { format, parseISO } from "date-fns";
 import { CarDTO } from "../../dtos/CarDTO";
 
 interface RentalPeriodData {
@@ -53,12 +52,10 @@ export function Scheduling() {
   function handleChangeDate(date: DayProps) {
     let start = !lastSelectedDate.timestamp ? date : lastSelectedDate
     let end = date;
-    let aux;
 
     if(start.timestamp > end.timestamp) {
-      aux = start;
       start = end;
-      end = aux;
+      end = start;
     }
 
     setLastSelectedDate(end)
@@ -70,8 +67,8 @@ export function Scheduling() {
     const lastDate = Object.keys(interval)[Object.keys(interval).length - 1]
 
     setRentalPeriod({
-      startFormatted: format(getPlatformDate(new Date(firstDate)), 'dd/MM/yyyy'),
-      endFormatted: format(getPlatformDate(new Date(lastDate)), 'dd/MM/yyyy'),
+      startFormatted: format(parseISO(firstDate), 'dd/MM/yyyy'),
+      endFormatted: format(parseISO(lastDate), 'dd/MM/yyyy'),
     })
   }
 
